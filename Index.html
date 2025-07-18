@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KAKA BENNY SAMAKISMART - Samaki Safi, Mafunzo ya Ufugaji, na Soko la Samaki Mwanza</title>
+    <meta name="description" content="Agiza samaki wabichi kutoka Ziwa Victoria. Pata mafunzo ya kina kuhusu ufugaji wa samaki, gharama za mabwawa, vyakula, na Samakipedia. KAKA BENNY SAMAKISMART inakuletea samaki bora hadi mlangoni pako jijini Mwanza. Huduma ya haraka na uhakika, ubora wa juu.">
+    <meta name="keywords" content="samaki Mwanza, nunua samaki Mwanza, sato, sangara, dagaa, KAKA BENNY SAMAKISMART, uvuvi Mwanza, Ziwa Victoria, samaki mtandaoni, samaki wabichi, ufugaji samaki, mafunzo ufugaji, mabwawa samaki, vyakula samaki, Samakipedia, aina za samaki">
+    <meta name="author" content="Benny Peter Molell">
+
+    <meta property="og:title" content="KAKA BENNY SAMAKISMART - Samaki Safi, Mafunzo ya Ufugaji, na Soko la Samaki Mwanza" />
+    <meta property="og:description" content="Agiza samaki wabichi kutoka Ziwa Victoria. Pata mafunzo ya kina kuhusu ufugaji wa samaki, gharama za mabwawa, vyakula, na Samakipedia. KAKA BENNY SAMAKISMART inakuletea samaki bora hadi mlangoni pako jijini Mwanza. Huduma ya haraka na uhakika, ubora wa juu." />
+    <meta property="og:image" content="./images/og-image.jpg" /> <meta property="og:url" content="https://kakabennysamakismart.co.tz" /> <meta property="og:type" content="website" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c99QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* Mitindo Maalum */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./images/ziwa-victoria.jpg'); /* Picha halisi ya Ziwa Victoria */
+            background-size: cover;
+            background-position: center;
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            height: 20px;
+            width: 20px;
+            font-size: 12px;
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 30;
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.3s ease-out forwards;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        /* Ficha kurasa kwa chaguo-msingi */
+        #main-content, #marketplace-section, #mafunzo-section { /* Added #mafunzo-section */
+            display: none;
+        }
+        #main-content.active, #marketplace-section.active, #mafunzo-section.active { /* Added #mafunzo-section */
+            display: block;
+        }
+        /* Kwa ajili ya picha za samaki kwenye Samakipedia */
+        .samakipedia-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 smooth-scroll">
+
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-xl md:text-2xl font-bold text-cyan-600 flex items-center">
+                <i class="fas fa-fish mr-2"></i>
+                <span>KAKA BENNY<br class="block sm:hidden"> SAMAKISMART</span>
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#" id="home-link" class="nav-link text-cyan-600 font-bold">Nyumbani</a>
+                <a href="#" id="marketplace-link" class="nav-link text-gray-600 hover:text-cyan-500">Soko la Wauzaji</a>
+                <a href="#" id="mafunzo-link" class="nav-link text-gray-600 hover:text-cyan-500">Mafunzo</a> <a href="#about" class="text-gray-600 hover:text-cyan-500">Kuhusu Sisi</a>
+                <a href="#contact" class="text-gray-600 hover:text-cyan-500">Wasiliana</a>
+            </div>
+            <div class="flex items-center">
+                 <button id="cart-button" class="relative text-gray-600 hover:text-cyan-500 focus:outline-none mr-4">
+                    <i class="fas fa-shopping-cart text-2xl"></i>
+                    <span id="cart-count" class="cart-badge bg-red-500 text-white rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#" id="mobile-home-link" class="nav-link-mobile block py-2 px-4 text-sm text-cyan-600 font-bold">Nyumbani</a>
+            <a href="#" id="mobile-marketplace-link" class="nav-link-mobile block py-2 px-4 text-sm text-gray-600 hover:bg-cyan-50">Soko la Wauzaji</a>
+            <a href="#" id="mobile-mafunzo-link" class="nav-link-mobile block py-2 px-4 text-sm text-gray-600 hover:bg-cyan-50">Mafunzo</a> <a href="#about" class="nav-link-mobile block py-2 px-4 text-sm text-gray-600 hover:bg-cyan-50">Kuhusu Sisi</a>
+            <a href="#contact" class="nav-link-mobile block py-2 px-4 text-sm text-gray-600 hover:bg-cyan-50">Wasiliana Nasi</a>
+        </div>
+    </header>
+
+    <div id="main-content" class="active">
+        <main>
+            <section id="home" class="hero-bg text-white">
+                <div class="container mx-auto px-6 py-24 md:py-32 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Samaki Safi Kutoka Ziwa Victoria, Mlangoni Kwako!</h1>
+                    <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Agiza sato, sangara, dagaa, na aina nyinginezo za samaki wabichi kutoka Ziwa Victoria kwa urahisi. KAKA BENNY SAMAKISMART inakuletea ubora na wepesi wa huduma hadi mlangoni pako hapa Mwanza.</p>
+                    <a href="#products" class="bg-white text-cyan-600 font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition duration-300 text-lg">Tazama Bidhaa Zetu</a>
+                </div>
+            </section>
+            <section id="how-it-works" class="py-16 bg-white">
+                <div class="container mx-auto px-6 text-center">
+                    <h2 class="text-3xl font-bold mb-2">Jinsi Inavyofanya Kazi</h2>
+                    <p class="text-gray-600 mb-12">Ni rahisi, agiza kwa hatua nne tu!</p>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="flex flex-col items-center">
+                            <div class="bg-cyan-100 text-cyan-600 rounded-full h-20 w-20 flex items-center justify-center mb-4"><i class="fas fa-mouse-pointer text-3xl"></i></div>
+                            <h3 class="text-xl font-semibold mb-2">1. Chagua Samaki</h3>
+                            <p class="text-gray-500">Vinjari orodha yetu pana na uchague samaki unaowapenda zaidi.</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-cyan-100 text-cyan-600 rounded-full h-20 w-20 flex items-center justify-center mb-4"><i class="fas fa-shopping-cart text-3xl"></i></div>
+                            <h3 class="text-xl font-semibold mb-2">2. Weka Kwenye Kikapu</h3>
+                            <p class="text-gray-500">Bonyeza 'Agiza Sasa' kuweka samaki kwenye kikapu chako cha manunuzi.</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-cyan-100 text-cyan-600 rounded-full h-20 w-20 flex items-center justify-center mb-4"><i class="fas fa-file-invoice-dollar text-3xl"></i></div>
+                            <h3 class="text-xl font-semibold mb-2">3. Jaza Taarifa</h3>
+                            <p class="text-gray-500">Fungua kikapu, kamilisha maelezo yako ya utoaji na mawasiliano.</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="bg-cyan-100 text-cyan-600 rounded-full h-20 w-20 flex items-center justify-center mb-4"><i class="fas fa-copy text-3xl"></i></div>
+                            <h3 class="text-xl font-semibold mb-2">4. Nakili na Tuma Oda</h3>
+                            <p class="text-gray-500">Nakili ujumbe wa oda na utume kupitia WhatsApp/SMS kwa uhakiki wa haraka.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="products" class="py-16">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Samaki Wetu Maarufu Kutoka Ziwa Victoria</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/sato.jpg" alt="Picha ya Sato safi kutoka Ziwa Victoria" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Sato (Tilapia)</h3>
+                                <p class="text-gray-600 mb-4">Maarufu sana kwa nyama yake laini na ladha tamu isiyo na kifani, anafaa kabisa kwa mlo wa familia. Ubichi wake umehakikishwa!</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">4000</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/sangara.jpg" alt="Picha ya Sangara mkubwa wa Ziwa Victoria" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Sangara (Nile Perch)</h3>
+                                <p class="text-gray-600 mb-4">Samaki mkubwa mwenye nyama nyeupe na tamu, anayevutia sana sokoni kwa kukaanga au kuchoma. Pata Sangara mbichi moja kwa moja kutoka ziwani!</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">6000</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/dagaa.jpg" alt="Picha ya Dagaa, samaki wadogo wa Ziwa Victoria" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Dagaa (Silver Cyprinid)</h3>
+                                <p class="text-gray-600 mb-4">Samaki wadogo wanaopatikana kwa wingi, ni kitoweo kinachopendwa na wengi. Dagaa wabichi na wa kukausha wanapatikana!</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">2000</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/kambale.jpg" alt="Picha ya Kambale (Catfish) safi" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Kambale (Catfish)</h3>
+                                <p class="text-gray-600 mb-4">Anayekua haraka na ana nyama yenye protini nyingi na ladha ya kipekee. Kamili kwa supu au kukaanga.</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">5000</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/kibua.jpg" alt="Picha ya Kibua (Clarias) samaki wa maji safi" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Kibua (Clarias)</h3>
+                                <p class="text-gray-600 mb-4">Anayefugwa kwa wingi na ana ladha nzuri na ya kipekee, anapendwa sana kwa ugali.</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">3500</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                            <img src="./images/mumi.jpg" alt="Picha ya Mumi (Lungfish) samaki mwenye uwezo wa kuishi nchi kavu" class="w-full h-48 object-cover product-image">
+                            <div class="p-6">
+                                <h3 class="text-2xl font-bold mb-2 product-name">Mumi (Lungfish)</h3>
+                                <p class="text-gray-600 mb-4">Ana uwezo wa kuishi kwenye maji na nchi kavu, na ana ladha ya kipekee na nyama yenye mafuta kidogo.</p>
+                                <div class="text-2xl font-bold text-cyan-600 mb-4">TSH <span class="product-price">4500</span> / kg</div>
+                                <button class="add-to-cart-btn w-full bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">Agiza Sasa</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="testimonials" class="py-16 bg-gray-100">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Wateja Wetu Wanasemaje Kuhusu KAKA BENNY SAMAKISMART?</h2>
+                    <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        </div>
+                    <div class="mt-12 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Acha Maoni Yako</h3>
+                        <form id="testimonial-form">
+                            <div class="mb-4">
+                                <label for="commenter-name" class="block text-gray-700 font-semibold mb-2">Jina Lako Kamili</label>
+                                <input type="text" id="commenter-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="comment-text" class="block text-gray-700 font-semibold mb-2">Maoni Yako (Uzoefu wako na KAKA BENNY SAMAKISMART)</label>
+                                <textarea id="comment-text" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition duration-300">Tuma Maoni Yako</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="py-16 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="md:w-1/2">
+                            <img src="./images/miamba-bismarck.jpg" alt="Picha ya Miamba ya Bismarck, Mwanza, ishara ya Ziwa Victoria" class="rounded-lg shadow-xl">
+                        </div>
+                        <div class="md:w-1/2">
+                            <h2 class="text-3xl font-bold mb-4">Kuhusu KAKA BENNY SAMAKISMART</h2>
+                            <p class="text-gray-600 mb-4">Sisi ni wajasiriamali kutoka Mwanza, Tanzania, wenye shauku ya kurahisisha upatikanaji wa samaki bora na wabichi kutoka Ziwa Victoria kwa kutumia teknolojia ya kisasa. Lengo letu ni kumuunganisha mvuvi na mlaji moja kwa moja, kuhakikisha unapata bidhaa safi, salama na kwa bei nafuu kabisa.</p>
+                            <p class="text-gray-600 mb-4">Biashara hii ilianzishwa na <span class="font-bold text-cyan-600">Benny Peter Molell</span>, kwa dhumuni la kuleta mapinduzi ya kidijitali katika sekta ya uvuvi na kuinua uchumi wa wavuvi na wafugaji wadogo wadogo katika Mkoa wa Mwanza na Tanzania kwa ujumla.</p>
+                            <a href="#contact" class="text-cyan-600 font-semibold hover:underline">Jua Mengi Zaidi <i class="fas fa-arrow-right ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="py-16">
+                <div class="container mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-center mb-12">Wasiliana Nasi - KAKA BENNY SAMAKISMART</h2>
+                    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-4">Tupo kwa ajili yako</h3>
+                                <p class="text-gray-600 mb-6">Una swali, maoni, au unahitaji usaidizi na oda yako? Usisite kuwasiliana nasi. Timu yetu ya KAKA BENNY SAMAKISMART ipo tayari kukuhudumia na kukupa msaada unaohitaji.</p>
+                                <div class="space-y-4">
+                                    <div class="flex items-center">
+                                        <div class="bg-cyan-100 text-cyan-600 rounded-full h-10 w-10 flex items-center justify-center mr-4"><i class="fab fa-whatsapp"></i></div>
+                                        <div>
+                                            <h4 class="font-semibold">WhatsApp</h4>
+                                            <a href="https://wa.me/255679351001" target="_blank" class="text-gray-600 hover:text-cyan-500">+255 679 351 001</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="bg-cyan-100 text-cyan-600 rounded-full h-10 w-10 flex items-center justify-center mr-4"><i class="fas fa-phone"></i></div>
+                                        <div>
+                                            <h4 class="font-semibold">Simu ya Kawaida</h4>
+                                            <a href="tel:+255628206864" class="text-gray-600 hover:text-cyan-500">+255 628 206 864</a>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="bg-cyan-100 text-cyan-600 rounded-full h-10 w-10 flex items-center justify-center mr-4"><i class="fas fa-map-marker-alt"></i></div>
+                                        <div>
+                                            <h4 class="font-semibold">Mahali</h4>
+                                            <p class="text-gray-600">Mwanza, Tanzania</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form>
+                                <div class="mb-4">
+                                    <label for="name" class="block text-gray-700 font-semibold mb-2">Jina Lako Kamili</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Weka jina lako">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="email" class="block text-gray-700 font-semibold mb-2">Barua Pepe Yako</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:focus:ring-cyan-500" placeholder="Weka barua pepe yako (si lazima)">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="message" class="block text-gray-700 font-semibold mb-2">Ujumbe Wako</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" placeholder="Andika ujumbe wako hapa..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition duration-300">Tuma Ujumbe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="mafunzo-section">
+        <main class="container mx-auto px-6 py-16">
+            <h1 class="text-4xl font-bold text-center mb-12 text-gray-800">Mafunzo ya Ufugaji Samaki na Samakipedia (KAKA BENNY SAMAKISMART)</h1>
+
+            <section id="fish-farming-intro" class="mb-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-cyan-700">Utangulizi wa Ufugaji Samaki</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">Ufugaji wa samaki ni shughuli muhimu inayochangia pakubwa katika usalama wa chakula na kuinua kipato kwa wakulima na wafanyabiashara. KAKA BENNY SAMAKISMART inakuletea mwongozo kamili wa kuanzisha na kuendeleza ufugaji wenye tija, kuanzia historia, aina za mabwawa, vyakula, hadi upatikanaji wa rasilimali.</p>
+                <p class="text-gray-700 leading-relaxed">Kwa kujifunza misingi ya ufugaji, utaweza kuzalisha samaki bora na kuongeza faida yako. Tunatoa elimu inayolenga wakulima wadogo na wakubwa, kuhakikisha kila mmoja anapata uelewa wa kutosha.</p>
+            </section>
+
+            <section id="fish-history" class="mb-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-cyan-700">Historia Fupi ya Samaki na Ufugaji Wao</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">Samaki wamekuwepo duniani kwa mamilioni ya miaka na wamekuwa sehemu muhimu ya maisha ya binadamu kama chanzo cha chakula na kipato. Ufugaji wa samaki ulianza karne nyingi zilizopita, hasa katika tamaduni za kale za Asia kama vile China, ambapo samaki aina ya Carp walifugwa katika mabwawa yaliyochimbwa. Katika karne ya 20, ufugaji wa samaki ulipata kasi duniani kote kutokana na mahitaji ya chakula yanayoongezeka na maendeleo ya teknolojia. Leo hii, ufugaji wa samaki umekuwa sekta kubwa inayochangia katika uchumi wa nchi nyingi, ikiwemo Tanzania.</p>
+            </section>
+
+            <section id="pond-farming" class="mb-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-cyan-700">Ufugaji Samaki Kwenye Mabwawa</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">Mabwawa ni njia rahisi na yenye ufanisi ya kufuga samaki. Kuna aina mbalimbali za mabwawa unazoweza kuchagua kulingana na mahitaji na uwezo wako:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 pl-4">
+                    <li>**Mabwawa ya Udongo:** Haya huchimbwa ardhini na ni chaguo nafuu kwa wakulima wengi. Yanahitaji udongo unaoweza kubana maji na yanapaswa kujengwa mahali penye chanzo cha maji safi.</li>
+                    <li>**Mabwawa ya Plastiki (Liner Ponds):** Hutengenezwa kwa kutumia turubai maalum za plastiki zinazobana maji. Ni rahisi kujenga na zinaweza kuwekwa karibu popote, hata kwenye udongo usiohifadhi maji. Ni nzuri kwa ufugaji mdogo na wa kati.</li>
+                    <li>**Mabwawa ya Zege (Concrete Ponds):** Yana gharama kubwa kujenga lakini hudumu kwa muda mrefu na ni rahisi kusafisha. Yanafaa kwa ufugaji wa kibiashara mkubwa.</li>
+                    <li>**Mabwawa ya Kisasa (Biofloc/Recirculating Aquaculture Systems - RAS):** Hizi ni mifumo ya kisasa inayotumia teknolojia ya hali ya juu kurudia kutumia maji na kudhibiti mazingira ya samaki. Gharama zake ni kubwa lakini zinaweza kuzalisha samaki wengi katika eneo dogo.</li>
+                </ul>
+                <h3 class="text-2xl font-bold mb-4 text-cyan-600">Gharama za Utengenezaji Mabwawa (Makadirio)</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">Gharama za utengenezaji mabwawa hutofautiana sana kulingana na aina ya bwawa, ukubwa, vifaa, na eneo. Hapa kuna makadirio ya jumla:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 pl-4">
+                    <li>**Bwawa la Udongo (ndogo hadi kati):** TSH 500,000 - 2,000,000 (kulingana na ukubwa na kazi ya kuchimba)</li>
+                    <li>**Bwawa la Plastiki (ndogo hadi kati, liner pekee):** TSH 300,000 - 1,500,000 (bila gharama za kuchimba/kujenga fremu)</li>
+                    <li>**Bwawa la Zege (doge):** Kuanzia TSH 2,000,000 na kuendelea (inaweza kufikia mamilioni kulingana na ukubwa)</li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed">Ni muhimu kufanya utafiti wa kina na kushauriana na wataalamu wa ufugaji samaki ili kupata makadirio sahihi zaidi kulingana na eneo na mahitaji yako halisi.</p>
+            </section>
+
+            <section id="fish-feed" class="mb-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-cyan-700">Vyakula vya Samaki na Upatikanaji</h2>
+                <p class="text-gray-700 leading-relaxed mb-4">Chakula ni sehemu kubwa ya gharama za ufugaji samaki, na ubora wa chakula huathiri moja kwa moja ukuaji na afya ya samaki wako. Kuna aina mbili kuu za vyakula vya samaki:</p>
+                <ul class="list-disc list-inside text-gray-700 mb-4 pl-4">
+                    <li>**Vyakula Asilia:** Hivi ni vyakula vinavyopatikana asilia kwenye bwawa, kama vile mimea midogo (phytoplankton), wadudu, na viumbe wadogo wa majini. Ubora wa vyakula hivi unaweza kuboreshwa kwa kuweka mbolea (hai au isiyo hai) kwenye bwawa.</li>
+                    <li>**Vyakula Vilivyotengenezwa (Commercial Feeds):** Hivi hutengenezwa viwandani na huja katika vipimo na viwango tofauti vya protini kulingana na aina na umri wa samaki. Vinaweza kuwa vinavyozama au kuelea.</li>
+                </ul>
+                <h3 class="text-2xl font-bold mb-4 text-cyan-600">Upatikanaji wa Vyakula na Rasilimali za Ufugaji</h3>
+                <p class="text-gray-700 leading-relaxed mb-4">Vyakula vya samaki vilivyotengenezwa vinapatikana katika maduka ya pembejeo za kilimo na ufugaji, wauzaji wakubwa wa vifaa vya ufugaji samaki, na hata kupitia KAKA BENNY SAMAKISMART kwa ushauri wa wapi pa kupata vyakula bora. Rasilimali nyingine muhimu kama vile mbegu za samaki (fingerlings), pampu za maji, na vifaa vya kupima ubora wa maji zinapatikana pia kwenye maduka hayo au kwa kuwasiliana na wataalamu wa ufugaji samaki.</p>
+            </section>
+
+            <section id="samakipedia" class="mb-12 bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold mb-6 text-cyan-700">Kamusi ya Samaki (SAMAKIPEDIA) - Uchambuzi Kina</h2>
+                <p class="text-gray-700 leading-relaxed mb-8">Hii ni orodha iliyochambuliwa kutoka kwenye chapisho la JamiiForums, ikitoa maelezo na picha kwa kila samaki aliyetajwa. <br> <span class="font-bold text-red-500">Kumbuka: Hakikisha umeweka picha halisi za samaki hawa kwenye folda ya `images/` na majina yanayolingana.</span></p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">1. Blobfish</h3>
+                        <img src="./images/blobfish.jpg" alt="Picha ya Blobfish" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Anajulikana kama kiumbe mwenye sura isiyovutia sana anapokuwa juu ya nchi kavu. Hata hivyo, muonekano huu unatokana na mabadiliko makubwa ya presha anapotolewa kutoka kwenye kina kirefu sana cha bahari (futi 2,000 - 4,000) anakoishi. Akiwa kwenye mazingira yake halisi, ana muonekano wa kawaida kama samaki wengine.</p>
+                        <p class="text-gray-600 mb-2">**Makazi:** Hupatikana kwenye maji ya kina kirefu katika bahari za New Zealand, Australia, na Samoa.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">2. Bunju (Pufferfish)</h3>
+                        <img src="./images/bunju.jpg" alt="Picha ya Bunju (Pufferfish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Kuna aina mbalimbali za Bunju; wengine wana miiba na wengine hawana. Ni maarufu kwa kuwa na sumu kali iitwayo tetrodotoxin, ambayo hupatikana hasa kwenye maini, ovari, na figo. Sumu hii inaweza kuwa hatari sana kwa binadamu.</p>
+                        <p class="text-gray-600 mb-2">**Upekee:** Licha ya sumu yake, katika baadhi ya nchi kama Japan, Bunju (anayejulikana kama 'Fugu') huandaliwa na wapishi wenye leseni maalum na ni kitoweo cha anasa.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">3. Chaa (Common Silver Biddy)</h3>
+                        <img src="./images/chaa.jpg" alt="Picha ya Chaa (Common Silver Biddy)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Chapisho halikutoa maelezo ya kina kumhusu samaki huyu zaidi ya kumtaja kwa jina la Kiingereza, Common Silver Biddy. Ni samaki wadogo wanaopatikana katika maeneo ya pwani.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">4. Changu Batu / Mjibondo / Kitawa (Bigeye Emperor)</h3>
+                        <img src="./images/changu-batu.jpg" alt="Picha ya Changu Batu" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Hawa ni samaki wanaoishi kwa makundi na wana tabia ya kipekee ya kuonekana kama wameganda au hawatembei majini. Wanapendelea kula kaa na viumme wadogo wa baharini.</p>
+                        <p class="text-gray-600 mb-2">**Tabia:** Wana meno ya nyuma yanayofanana na magego kwa ajili ya kusagia magamba ya kaa, na meno makali ya mbele kwa ajili ya kukamatia chakula. Huwinda zaidi wakati wa usiku.</p>
+                        <p class="text-gray-600 mb-2">**Makazi:** Hupatikana kwenye Bahari ya Hindi na Pasifiki.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">5. Changu Chali (Blubberlip Snapper)</h3>
+                        <img src="./images/changu-chali.jpg" alt="Picha ya Changu Chali" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Jina la kisayansi ni Lutjanus rivulatus. Ni aina ya Changu anayepatikana kwenye Bahari ya Hindi na Pasifiki. Hufikia urefu wa sm 80 na uzito wa hadi kilo 13.</p>
+                        <p class="text-gray-600 mb-2">**Makazi:** Hupendelea kukaa kwenye maeneo yenye majabali, mapango, na matumbawe katika kina cha mita 15 hadi 100.</p>
+                        <p class="text-gray-600 mb-2">**Tabia:** Hutembea mmoja mmoja au kwenye makundi madogo yasiyozidi samaki 20.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">6. Changu Doa / Mkapa / Kiwala (Thumbprint Emperor)</h3>
+                        <img src="./images/changu-doa.jpg" alt="Picha ya Changu Doa" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Jina la kisayansi ni Lethrinus harak. Ana rangi ya mchanganyiko wa kijani na zeituni. Jina lake linatokana na doa kubwa jeusi analo nalo kila upande, ambalo mara nyingi huzungukwa na rangi ya njano. Hufikia urefu wa sm 50.</p>
+                        <p class="text-gray-600 mb-2">**Upekee:** Mapezi yake huwa na rangi ya machungwa au nyekundu.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">7. Chewa (Grouper)</h3>
+                        <img src="./images/chewa.jpg" alt="Picha ya Chewa" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki anayepatikana Pwani ya Afrika Mashariki. Anajulikana kwa kuwa na mdomo mkubwa na uwezo wa kuishi kwa muda mrefu (hata masaa 6) akiwa nje ya maji. Hata akitolewa viungo vya ndani, huendelea kupumua.</p>
+                        <p class="text-gray-600 mb-2">**Matumizi:** Ni mtamu sana kwa supu. Wakubwa huchunwa ngozi na kutolewa mnofu (fillet).</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">8. Dagaa (Sardines/Anchovies)</h3>
+                        <img src="./images/dagaa.jpg" alt="Picha ya Dagaa" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki wadogo sana maarufu katika maeneo mengi ya Afrika Mashariki. Hukaushwa na kutumika kama kitoweo maarufu, hasa kwa ugali. Wana majina mengi ya kienyeji kulingana na eneo, kama vile kauzu au misumari.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">9. Dome (Cuttlefish)</h3>
+                        <img src="./images/dome.jpg" alt="Picha ya Dome (Cuttlefish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni jamii ya ngisi aliye na gamba gumu la ndani mgongoni. Kama ngisi, ana uwezo wa kutoa wino na ana sumu kidogo kwa ajili ya kujilinda. Sio hatari kwa binadamu.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">10. Domodomo</h3>
+                        <img src="./images/domodomo.jpg" alt="Picha ya Domodomo" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Anapatikana katika maziwa makuu ya Tanzania (Victoria, Nyasa, Tanganyika). Anajulikana kwa majina tofauti kulingana na eneo: Ndomolomo (Kigoma), Njizi (Nyasa), na Mbete.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">11. Furu (Haplochromis Cichlids)</h3>
+                        <img src="./images/furu.jpg" alt="Picha ya Furu (Haplochromis Cichlids)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni jamii ya samaki wa Ziwa Victoria. Wana ukubwa wa wastani, wakifikia hadi sm 25. Ni maarufu na wanapatikana kwa wingi.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">12. Jodari (Tuna)</h3>
+                        <img src="./images/jodari.jpg" alt="Picha ya Jodari (Tuna)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Jodari ni jina la Kiswahili kwa samaki aina ya Tuna. Ni samaki wakubwa wa baharini wanaosafiri masafa marefu, wenye thamani kubwa kibiashara na maarufu kwa nyama yao nyekundu yenye protini nyingi.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">13. Kamongo (Lungfish)</h3>
+                        <img src="./images/kamongo.jpg" alt="Picha ya Kamongo (Lungfish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ana umbo linalofanana na nyoka. Ana uwezo wa kipekee wa kuishi kwa muda mrefu sana nje ya maji (hata miaka kadhaa kwa kujizika kwenye matope). Hata akikatwa vipande, viungo vyake huendelea kuwa na uhai. Ana meno makali na anapaswa kushikwa kwa tahadhari. Ngozi yake hutolewa na mnofu pekee ndio huliwa.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">14. Kibua (Mackerel)</h3>
+                        <img src="./images/kibua-samakipedia.jpg" alt="Picha ya Kibua (Mackerel)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Wapo wa aina mbalimbali; wengine wana mwamba mgumu karibu na mkia na wengine wana ngozi laini. Wote ni watamu na bei yao ni nafuu. (Kumbuka, Kibua wa "Samaki Wetu Maarufu" na huyu wanaweza kuwa aina tofauti au jina la kawaida tu. Hapa tunafuata maelezo ya Samakipedia). </p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">15. Mbofu (Bagrus meridionalis - Catfish)</h3>
+                        <img src="./images/mbofu.jpg" alt="Picha ya Mbofu (Catfish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki jamii ya Kambale anayepatikana Afrika pekee. Anaweza kufikia urefu wa mita 1.5. Zamani alipatikana kwa wingi katika Ziwa Victoria na Nyasa, lakini sasa amepungua sana.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">16. Migebuka (Sleek Lates)</h3>
+                        <img src="./images/migebuka.jpg" alt="Picha ya Migebuka (Sleek Lates)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Jina la kisayansi ni Lates stappersii. Ni samaki anayepatikana duniani kote katika Ziwa Tanganyika pekee. Hufikia urefu wa sm 45. Ni watamu sana lakini upatikanaji wake ni mgumu kutokana na kina kirefu cha ziwa na zana duni za uvuvi.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">17. Mkunga Umeme (Electric Eel)</h3>
+                        <img src="./images/mkunga-umeme.jpg" alt="Picha ya Mkunga Umeme" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki mwenye uwezo wa kuzalisha umeme wenye nguvu kubwa (hadi Volti 860) unaoweza kumuua binadamu au mnyama kama mamba. Anatumia umeme huu kuwinda na kujilinda. Sehemu kubwa ya mwili wake (4/5) imeundwa na viungo vya kuzalisha umeme.</p>
+                        <p class="text-gray-600 mb-2">**Makazi:** Anaishi kwenye maji baridi yasiyo na chumvi katika misitu ya Amazon, Amerika ya Kusini.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">18. Mtepa (Ribbon Fish / Hairtail)</h3>
+                        <img src="./images/mtepa.jpg" alt="Picha ya Mtepa (Ribbon Fish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Anajulikana pia kama Largehead hairtail au Beltfish. Ni samaki mrefu na mwembamba. Ni mtamu sana akikaangwa na huliwa kama kitafunwa na chipsi au mihogo.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">19. Nembe</h3>
+                        <img src="./images/nembe.jpg" alt="Picha ya Nembe" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki wa maji baridi anayepatikana sana Ziwa Victoria, hasa wakati wa mvua. Ni mtamu kwa "chukuchuku" (mchemsho) na huliwa na mayai yake.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">20. Ngisi (Squid)</h3>
+                        <img src="./images/ngisi.jpg" alt="Picha ya Ngisi (Squid)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Kiumbe wa baharini jamii ya cephalopod. Ana uwezo wa kutoa wino mweusi ili kumchanganya adui na kutoroka. Ni kitoweo maarufu duniani kote.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">21. Nyangumi (Whale)</h3>
+                        <img src="./images/nyangumi.jpg" alt="Picha ya Nyangumi (Whale)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Nyangumi si samaki, bali ni mnyama wa jamii ya mamalia anayeishi majini. Huzaa na kunyonyesha watoto wake. Ni kiumbe mkubwa zaidi duniani.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">22. Pweza (Octopus)</h3>
+                        <img src="./images/pweza.jpg" alt="Picha ya Pweza (Octopus)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni kiumbe mwerevu wa baharini mwenye mikono nane. Ana uwezo wa kujibadilisha rangi, kutoa wino, na kutumia mikono yake kujilinda. Inasemekana ulaji wa pweza una faida kwa afya ya uzazi.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">23. Sangara (Nile Perch)</h3>
+                        <img src="./images/sangara.jpg" alt="Picha ya Sangara (Nile Perch)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Sangara (Lates niloticus) ni samaki maarufu wa maji baridi, anayepatikana hasa Ziwa Victoria. Ni samaki mkubwa na mwindaji, ambaye aliingizwa ziwani na amesababisha mabadiliko makubwa ya kibaiolojia. Nyama yake inasafirishwa sana nje ya nchi.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">24. Sato (Tilapia)</h3>
+                        <img src="./images/sato.jpg" alt="Picha ya Sato (Tilapia)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Sato ni jina la kawaida kwa samaki aina ya Tilapia. Ni samaki muhimu sana kwa chakula na ufugaji katika maeneo mengi ya dunia, ikiwemo Tanzania. Wana ladha nzuri na hustahimili mazingira tofauti.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">25. Sesemvule (Stonefish)</h3>
+                        <img src="./images/sesemvule.jpg" alt="Picha ya Sesemvule (Stonefish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Jina la kisayansi ni Synanceia. Ni samaki hatari sana anayeishi kwenye sakafu ya bahari, akijifananisha na mawe. Ana miiba yenye sumu kali sana duniani, ambayo inaweza kuua binadamu. Tahadhari kubwa inahitajika!</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">26. Tasi (Rabbitfish)</h3>
+                        <img src="./images/tasi.jpg" alt="Picha ya Tasi (Rabbitfish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni samaki mtamu anayekula majani na hupatikana kwenye maeneo ya pwani. Huvuliwa kwa kutumia mtego wa jadi uitwao dungu.</p>
+                        <p class="text-gray-600 mb-2">**Tahadhari:** Ana miiba mikali sana, hasa wa kwenye paji la uso, ambayo ikimchoma mtu husababisha maumivu makali na uvimbe. Anahitaji kushikwa kwa uangalifu mkubwa.</p>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-800">27. Tasi Mwamba (Reef Rabbitfish)</h3>
+                        <img src="./images/tasi-mwamba.jpg" alt="Picha ya Tasi Mwamba (Reef Rabbitfish)" class="samakipedia-img">
+                        <p class="text-gray-600 mb-2">**Maelezo:** Ni jamii ya Tasi wenye magamba ambao hupatikana kwenye maeneo ya majabali na miamba chini ya bahari.</p>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <div id="marketplace-section">
+        <main class="container mx-auto px-6 py-16">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-800">Soko la Wauzaji wa Samaki (KAKA BENNY SAMAKISMART)</h1>
+                <p class="text-gray-600 mt-2">Gundua bidhaa mbalimbali za ziwani kutoka kwa wavuvi na wauzaji mbalimbali hapa Mwanza.</p>
+                <button id="open-post-modal-btn" class="mt-6 bg-green-500 text-white font-bold py-3 px-8 rounded-full hover:bg-green-600 transition duration-300">
+                    <i class="fas fa-plus-circle mr-2"></i>Tangaza Bidhaa Yako
+                </button>
+            </div>
+
+            <div id="marketplace-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                </div>
+        </main>
+    </div>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">KAKA BENNY SAMAKISMART</h3>
+                    <p class="text-gray-400">Tunakuletea samaki wabichi na bora kutoka Ziwa Victoria hadi mlangoni pako. Imeanzishwa na Benny Peter Molell kwa ubora na uhakika.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Viungo vya Haraka</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" id="footer-home-link" class="text-gray-400 hover:text-white">Nyumbani</a></li>
+                        <li><a href="#" id="footer-marketplace-link" class="text-gray-400 hover:text-white">Soko la Wauzaji</a></li>
+                        <li><a href="#" id="footer-mafunzo-link" class="text-gray-400 hover:text-white">Mafunzo</a></li> <li><a href="#about" class="text-gray-400 hover:text-white">Kuhusu Sisi</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white">Mawasiliano</a></li>
+                        <li><a href="#" id="admin-link" class="text-cyan-400 hover:text-white font-bold">Tazama Oda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Tufuate KAKA BENNY SAMAKISMART</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://www.facebook.com/kaka.benny.samakismart" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/kaka.benny.samakismart" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/kaka.benny.samakismart" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/255679351001" target="_blank" class="text-gray-400 hover:text-white text-2xl"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; <span id="year"></span> KAKA BENNY SAMAKISMART. Haki zote zimehifadhiwa.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="tel:+255628206864" class="floating-btn bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform">
+        <i class="fas fa-phone text-2xl"></i>
+    </a>
+
+    <div id="modal-container">
+        <div id="cart-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative animate-scale-in">
+                <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i class="fas fa-times text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-6 text-center">Kikapu Chako cha KAKA BENNY SAMAKISMART</h2>
+                <div id="cart-items" class="mb-6 max-h-64 overflow-y-auto"></div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between items-center text-xl font-bold mb-6"><span>Jumla:</span><span id="cart-total">TSH 0</span></div>
+                    <button id="go-to-checkout-btn" class="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition duration-300">Endelea na Malipo</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative animate-scale-in">
+                 <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i class="fas fa-times text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-6 text-center">Kamilisha Oda Yako (KAKA BENNY SAMAKISMART)</h2>
+                <form id="checkout-form">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div><label for="customer-name" class="block text-sm font-medium text-gray-700">Jina Kamili</label><input type="text" id="customer-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="Mfano: Juma Hamisi"></div>
+                        <div><label for="customer-phone" class="block text-sm font-medium text-gray-700">Namba ya Simu (ya Kupigiwa)</label><input type="tel" id="customer-phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="Mfano: 07xxxxxxx"></div>
+                        <div><label for="customer-location" class="block text-sm font-medium text-gray-700">Mahali pa Kuletewa (Mtaa/Eneo)</label><input type="text" id="customer-location" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500" placeholder="Mfano: Igogo, Mtaa wa Uhuru"></div>
+                    </div>
+                    <div class="mt-6 border-t pt-4">
+                        <h3 class="text-lg font-bold mb-2">Muhtasari wa Oda Yako</h3>
+                        <div id="checkout-summary" class="text-sm text-gray-600 mb-4"></div>
+                        <div class="flex justify-between items-center text-xl font-bold mb-6"><span>Jumla ya Malipo:</span><span id="checkout-total">TSH 0</span></div>
+                        <button type="submit" class="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600 transition duration-300">Thibitisha Oda Yako</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="confirmation-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-8 relative text-center animate-scale-in">
+                <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i class="fas fa-times text-2xl"></i></button>
+                <div class="text-green-500 mb-4"><i class="fas fa-check-circle text-6xl"></i></div>
+                <h2 class="text-2xl font-bold mb-4">Asante! Oda Imepokelewa na KAKA BENNY SAMAKISMART!</h2>
+                <p class="text-gray-600 mb-4">Oda yako imehifadhiwa salama. Ili kuharakisha mchakato, tafadhali nakili ujumbe hapa chini na utume kwetu WhatsApp.</p>
+                <div class="relative mb-4">
+                    <textarea id="order-message-textarea" readonly class="w-full h-40 p-2 border border-gray-300 rounded-md bg-gray-50 resize-none"></textarea>
+                </div>
+                <button id="copy-message-btn" class="w-full bg-cyan-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-cyan-600 transition duration-300 mb-4"><i class="fas fa-copy mr-2"></i>Nakili Ujumbe wa Oda</button>
+                <p class="text-sm text-gray-500">Baada ya kunakili, fungua WhatsApp na tuma kwa <a href="https://wa.me/255679351001" target="_blank" class="text-cyan-600 font-bold underline">+255 679 351 001</a>.</p>
+            </div>
+        </div>
+
+        <div id="post-product-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-6 relative animate-scale-in">
+                 <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i class="fas fa-times text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-6 text-center">Tangaza Bidhaa Yako Sokoni (KAKA BENNY SAMAKISMART)</h2>
+                <form id="post-product-form">
+                    <div class="grid grid-cols-1 gap-4">
+                        <div><label for="seller-name" class="block text-sm font-medium text-gray-700">Jina la Muuzaji/Biashara</label><input type="text" id="seller-name" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"></div>
+                        <div><label for="seller-phone" class="block text-sm font-medium text-gray-700">Namba ya Simu</label><input type="tel" id="seller-phone" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"></div>
+                        <div><label for="product-title" class="block text-sm font-medium text-gray-700">Jina la Bidhaa (Mfano: Sato 5kg)</label><input type="text" id="product-title" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"></div>
+                        <div><label for="product-description" class="block text-sm font-medium text-gray-700">Maelezo Mafupi (Bei, Eneo, Aina)</label><textarea id="product-description" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3"></textarea></div>
+                        <div><label for="product-image-upload" class="block text-sm font-medium text-gray-700">Picha ya Bidhaa</label><input type="file" id="product-image-upload" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-50 file:text-cyan-700 hover:file:bg-cyan-100"></div>
+                        <img id="image-preview" src="" alt="Image Preview" class="hidden w-full h-48 object-cover rounded-md mt-2">
+                    </div>
+                    <div class="mt-6 border-t pt-4">
+                        <button type="submit" class="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-600">Tuma Tangazo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="admin-modal" class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl p-6 relative animate-scale-in">
+                <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i class="fas fa-times text-2xl"></i></button>
+                <h2 class="text-2xl font-bold mb-2 text-center">Kiboksi cha Oda (Admin) - KAKA BENNY SAMAKISMART</h2>
+                <p class="text-center text-sm text-gray-500 mb-6">Hapa ndipo oda zote za wateja zinapoingia. Zisimamie kwa umakini.</p>
+                <div id="admin-orders-container" class="mb-6 max-h-96 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-md opacity-0 transition-opacity duration-300 z-50"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- VIGEZO VYA MSINGI ---
+            const allModals = document.querySelectorAll('.modal');
+            const toast = document.getElementById('toast');
+            let cart = [];
+
+            // ***** INGIZA TAARIFA ZAKO ZA CLOUDINARY HAPA *****
+            // Hizi unazipata kwenye Cloudinary Dashboard yako.
+            const CLOUDINARY_CLOUD_NAME = 'dmtszjlt9'; // BADILISHA NA CLOUD NAME YAKO HALISI KUTOKA CLOUDINARY
+            const CLOUDINARY_UPLOAD_PRESET = 'YOUR_CLOUDINARY_UPLOAD_PRESET'; // BADILISHA NA JINA LA UPLOAD PRESET ULIYOUMBA (Mfano: 'netlify_uploads')
+            // *************************************************
+
+            // --- KAZI ZA JUMLA ---
+            const openModal = (modal) => modal.classList.remove('hidden');
+            const closeModal = (modal) => modal.classList.add('hidden');
+            const showToast = (message, isError = false) => {
+                toast.textContent = message;
+                toast.className = `fixed bottom-5 right-5 py-2 px-4 rounded-lg shadow-md transition-opacity duration-300 z-50 ${isError ? 'bg-red-500' : 'bg-green-500'} text-white`;
+                toast.classList.remove('opacity-0');
+                setTimeout(() => toast.classList.add('opacity-0'), 3000);
+            };
+
+            // --- PAGE NAVIGATION LOGIC ---
+            const mainContent = document.getElementById('main-content');
+            const marketplaceSection = document.getElementById('marketplace-section');
+            const mafunzoSection = document.getElementById('mafunzo-section'); // New
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileNavLinks = document.querySelectorAll('.nav-link-mobile');
+            const footerHomeLink = document.getElementById('footer-home-link');
+            const footerMarketplaceLink = document.getElementById('footer-marketplace-link');
+            const footerMafunzoLink = document.getElementById('footer-mafunzo-link'); // New
+
+            function showPage(pageId) {
+                mainContent.classList.remove('active');
+                marketplaceSection.classList.remove('active');
+                mafunzoSection.classList.remove('active'); // New
+
+                document.getElementById(pageId).classList.add('active');
+
+                navLinks.forEach(link => link.classList.remove('text-cyan-600', 'font-bold'));
+                mobileNavLinks.forEach(link => link.classList.remove('text-cyan-600', 'font-bold'));
+
+                if (pageId === 'main-content') {
+                    document.getElementById('home-link').classList.add('text-cyan-600', 'font-bold');
+                    document.getElementById('mobile-home-link').classList.add('text-cyan-600', 'font-bold');
+                } else if (pageId === 'marketplace-section') {
+                    document.getElementById('marketplace-link').classList.add('text-cyan-600', 'font-bold');
+                    document.getElementById('mobile-marketplace-link').classList.add('text-cyan-600', 'font-bold');
+                } else if (pageId === 'mafunzo-section') { // New
+                    document.getElementById('mafunzo-link').classList.add('text-cyan-600', 'font-bold');
+                    document.getElementById('mobile-mafunzo-link').classList.add('text-cyan-600', 'font-bold');
+                }
+                window.scrollTo(0, 0);
+            }
+
+            document.getElementById('home-link').addEventListener('click', (e) => { e.preventDefault(); showPage('main-content'); });
+            document.getElementById('mobile-home-link').addEventListener('click', (e) => { e.preventDefault(); showPage('main-content'); document.getElementById('mobile-menu').classList.add('hidden'); });
+            footerHomeLink.addEventListener('click', (e) => { e.preventDefault(); showPage('main-content'); });
+            document.getElementById('marketplace-link').addEventListener('click', (e) => { e.preventDefault(); showPage('marketplace-section'); });
+            document.getElementById('mobile-marketplace-link').addEventListener('click', (e) => { e.preventDefault(); showPage('marketplace-section'); document.getElementById('mobile-menu').classList.add('hidden'); });
+            footerMarketplaceLink.addEventListener('click', (e) => { e.preventDefault(); showPage('marketplace-section'); });
+            document.getElementById('mafunzo-link').addEventListener('click', (e) => { e.preventDefault(); showPage('mafunzo-section'); }); // New
+            document.getElementById('mobile-mafunzo-link').addEventListener('click', (e) => { e.preventDefault(); showPage('mafunzo-section'); document.getElementById('mobile-menu').classList.add('hidden'); }); // New
+            footerMafunzoLink.addEventListener('click', (e) => { e.preventDefault(); showPage('mafunzo-section'); }); // New
+
+
+            // --- LOGIC YA ADMIN PANEL ---
+            const adminLink = document.getElementById('admin-link');
+            const adminOrdersContainer = document.getElementById('admin-orders-container');
+
+            const renderAdminOrders = () => {
+                const orders = JSON.parse(localStorage.getItem('KakaBennyOrders')) || [];
+                if (orders.length === 0) {
+                    adminOrdersContainer.innerHTML = '<p class="text-gray-500 text-center py-8">Hakuna oda mpya.</p>';
+                    return;
+                }
+                adminOrdersContainer.innerHTML = `<div class="overflow-x-auto"><table class="min-w-full bg-white border"><thead class="bg-gray-100"><tr><th class="py-2 px-4 border-b">Mteja</th><th class="py-2 px-4 border-b">Simu</th><th class="py-2 px-4 border-b">Eneo</th><th class="py-2 px-4 border-b">Oda</th><th class="py-2 px-4 border-b">Jumla</th><th class="py-2 px-4 border-b">Kitendo</th></tr></thead><tbody>${orders.map(order => `<tr class="text-center hover:bg-gray-50"><td class="py-2 px-4 border-b">${order.customer.name}</td><td class="py-2 px-4 border-b"><a href="tel:${order.customer.phone}" class="text-cyan-600">${order.customer.phone}</a></td><td class="py-2 px-4 border-b">${order.customer.location}</td><td class="py-2 px-4 border-b text-left">${order.items.map(i => `<div>- ${i.name} (x${i.quantity})</div>`).join('')}</td><td class="py-2 px-4 border-b font-bold">TSH ${order.total.toLocaleString()}</td><td class="py-2 px-4 border-b"><button class="delete-order-btn text-red-500 hover:text-red-700" data-id="${order.id}"><i class="fas fa-trash"></i> Futa</button></td></tr>`).join('')}</tbody></table></div>`;
+            };
+
+            const saveOrderToLocalStorage = (order) => {
+                const orders = JSON.parse(localStorage.getItem('KakaBennyOrders')) || [];
+                orders.unshift(order);
+                localStorage.setItem('KakaBennyOrders', JSON.stringify(orders));
+            };
+
+            const deleteOrderFromLocalStorage = (orderId) => {
+                let orders = JSON.parse(localStorage.getItem('KakaBennyOrders')) || [];
+                orders = orders.filter(order => order.id !== orderId);
+                localStorage.setItem('KakaBennyOrders', JSON.stringify(orders));
+                renderAdminOrders();
+            };
+
+            adminLink.addEventListener('click', (e) => { e.preventDefault(); renderAdminOrders(); openModal(document.getElementById('admin-modal')); });
+            adminOrdersContainer.addEventListener('click', (e) => {
+                const deleteBtn = e.target.closest('.delete-order-btn');
+                if (deleteBtn) {
+                    if (confirm('Una uhakika unataka kufuta oda hii?')) {
+                        deleteOrderFromLocalStorage(deleteBtn.dataset.id);
+                    }
+                }
+            });
+            // --- LOGIC YA KIKAPU NA MALIPO ---
+            const cartButton = document.getElementById('cart-button');
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total');
+            const cartCount = document.getElementById('cart-count');
+            const goToCheckoutBtn = document.getElementById('go-to-checkout-btn');
+            const checkoutForm = document.getElementById('checkout-form');
+            const checkoutSummary = document.getElementById('checkout-summary');
+            const checkoutTotalEl = document.getElementById('checkout-total');
+            const orderMessageTextarea = document.getElementById('order-message-textarea');
+            const copyMessageBtn = document.getElementById('copy-message-btn');
+            const updateCartUI = () => {
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+                cartTotalEl.textContent = `TSH ${total.toLocaleString()}`;
+                cartCount.textContent = totalItems;
+                cartCount.classList.toggle('hidden', totalItems === 0);
+                goToCheckoutBtn.disabled = totalItems === 0;
+                goToCheckoutBtn.classList.toggle('opacity-50', totalItems === 0);
+                goToCheckoutBtn.classList.toggle('cursor-not-allowed', totalItems === 0);
+                cartItemsContainer.innerHTML = cart.length === 0 ? '<p class="text-gray-500 text-center">Kikapu chako hakina kitu.</p>' : cart.map(item => `<div class="flex justify-between items-center mb-4 border-b pb-2"><div class="flex items-center gap-3"><img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md"><div><h4 class="font-semibold">${item.name}</h4><p class="text-gray-600 text-sm">TSH ${item.price.toLocaleString()}</p></div></div><div class="flex items-center gap-2"><input type="number" min="1" value="${item.quantity}" data-name="${item.name}" class="quantity-input w-16 text-center border rounded-md"><button class="remove-from-cart-btn text-red-500 hover:text-red-700" data-name="${item.name}"><i class="fas fa-trash"></i></button></div></div>`).join('');
+            };
+
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const card = e.target.closest('.bg-white');
+                    const product = { name: card.querySelector('.product-name').textContent, price: parseFloat(card.querySelector('.product-price').textContent), image: card.querySelector('.product-image').src };
+                    const existingProduct = cart.find(item => item.name === product.name);
+                    if (existingProduct) existingProduct.quantity++;
+                    else cart.push({ ...product, quantity: 1 });
+                    updateCartUI();
+                    showToast(`${product.name} imeongezwa kwenye kikapu!`);
+                });
+            });
+            cartItemsContainer.addEventListener('input', e => {
+                if (e.target.classList.contains('quantity-input')) {
+                    const productName = e.target.dataset.name;
+                    const newQuantity = parseInt(e.target.value);
+                    const productInCart = cart.find(item => item.name === productName);
+                    if (productInCart) {
+                        if (newQuantity > 0) productInCart.quantity = newQuantity;
+                        else cart = cart.filter(item => item.name !== productName);
+                    }
+                    updateCartUI();
+                }
+            });
+            cartItemsContainer.addEventListener('click', e => {
+                const removeBtn = e.target.closest('.remove-from-cart-btn');
+                if (removeBtn) {
+                    cart = cart.filter(item => item.name !== removeBtn.dataset.name);
+                    updateCartUI();
+                }
+            });
+            goToCheckoutBtn.addEventListener('click', () => {
+                closeModal(document.getElementById('cart-modal'));
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                checkoutTotalEl.textContent = `TSH ${total.toLocaleString()}`;
+                checkoutSummary.innerHTML = cart.map(item => `<p>${item.name} (x${item.quantity})</p>`).join('');
+                openModal(document.getElementById('checkout-modal'));
+            });
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const newOrder = {
+                    id: `ss-${Date.now()}`,
+                    customer: { name: document.getElementById('customer-name').value, phone: document.getElementById('customer-phone').value, location: document.getElementById('customer-location').value },
+                    items: cart,
+                    total: total,
+                    date: new Date().toLocaleString('sw-TZ')
+                };
+
+                saveOrderToLocalStorage(newOrder);
+
+                let orderMessage = `*Oda Mpya kutoka KAKA BENNY SAMAKISMART:*\n\n*Mteja:* ${newOrder.customer.name}\n*Simu:* ${newOrder.customer.phone}\n*Eneo:* ${newOrder.customer.location}\n\n*AMEAGIZA:*\n${cart.map(i => `- ${i.name} (x${i.quantity})`).join('\n')}\n\n*Jumla Kuu: TSH ${total.toLocaleString()}*`;
+                orderMessageTextarea.value = orderMessage;
+                closeModal(document.getElementById('checkout-modal'));
+                openModal(document.getElementById('confirmation-modal'));
+            });
+
+            copyMessageBtn.addEventListener('click', () => {
+                orderMessageTextarea.select();
+                try {
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(orderMessageTextarea.value).then(() => {
+                            showToast('Ujumbe umenakiliwa! Sasa fungua WhatsApp utume.');
+                        });
+                    } else {
+                        document.execCommand('copy');
+                        showToast('Ujumbe umenakiliwa! Sasa fungua WhatsApp utume.');
+                    }
+                } catch (err) {
+                    showToast('Imeshindikana kunakili, tafadhali fanya kwa mkono.', true);
+                }
+            });
+            // --- TESTIMONIALS LOGIC ---
+            const testimonialsGrid = document.getElementById('testimonials-grid');
+            const testimonialForm = document.getElementById('testimonial-form');
+
+            const defaultTestimonials = [
+                { name: 'Juma K. - Igoma', text: 'Huduma bora sana! Samaki walikuwa wabichi na walifika kwa wakati. Nitaagiza tena bila shaka.', image: './images/avatar-juma.png' },
+                { name: 'Asha S. - Capripoint', text: 'Nimefurahishwa na urahisi wa kuagiza kupitia tovuti. KAKA BENNY SAMAKISMART anajua anachofanya. Asante sana!', image: './images/avatar-asha.png' },
+                { name: 'David M. - Nyamagana', text: 'Sangara alikuwa mtamu sana. Bei pia ni nzuri ukilinganisha na sokoni. Kazi nzuri KAKA BENNY SAMAKISMART!', image: './images/avatar-david.png' }
+            ];
+            const renderTestimonials = () => {
+                let comments = JSON.parse(localStorage.getItem('KakaBennyComments')) || defaultTestimonials;
+                // Onyesha maoni 10 ya hivi karibuni
+                const recentComments = comments.slice(-10);
+                testimonialsGrid.innerHTML = recentComments.map(comment => `
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <img src="${comment.image || './images/default-avatar.png'}" alt="Picha ya Mteja" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-cyan-200">
+                        <p class="text-gray-600 italic mb-4">"${comment.text}"</p>
+                        <h4 class="font-bold text-cyan-600">${comment.name}</h4>
+                    </div>
+                `).join('');
+            };
+
+            testimonialForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const commenterName = document.getElementById('commenter-name').value;
+                const commentText = document.getElementById('comment-text').value;
+
+                let comments = JSON.parse(localStorage.getItem('KakaBennyComments')) || defaultTestimonials;
+
+                const newComment = {
+                    name: commenterName,
+                    text: commentText,
+                    image: `./images/default-avatar.png` // Tumia avatar ya jumla au unda jina la kipekee
+                };
+
+                comments.push(newComment);
+                localStorage.setItem('KakaBennyComments', JSON.stringify(comments));
+
+                renderTestimonials();
+                testimonialForm.reset();
+                showToast('Asante kwa maoni yako!');
+            });
+            // --- MARKETPLACE LOGIC ---
+            const openPostModalBtn = document.getElementById('open-post-modal-btn');
+            const postProductModal = document.getElementById('post-product-modal');
+            const postProductForm = document.getElementById('post-product-form');
+            const marketplaceGrid = document.getElementById('marketplace-grid');
+            const imagePreview = document.getElementById('image-preview');
+            const imageUpload = document.getElementById('product-image-upload');
+
+            // KAZI YA KUPAKIA PICHA KWENYE CLOUDINARY
+            const uploadImageToCloudinary = async (file) => {
+                if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
+                    showToast('Cloudinary credentials hazijawekwa. Huwezi kupakia picha. Tafadhali angalia code ya JavaScript.', true);
+                    return null;
+                }
+
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+                try {
+                    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const data = await response.json();
+                    if (data.secure_url) {
+                        return data.secure_url;
+                    } else {
+                        throw new Error(data.error ? data.error.message : 'Failed to upload image to Cloudinary.');
+                    }
+                } catch (error) {
+                    console.error("Cloudinary upload error:", error);
+                    showToast(`Kuna tatizo kupakia picha: ${error.message}`, true);
+                    return null;
+                }
+            };
+
+
+            const renderMarketplacePosts = () => {
+                const posts = JSON.parse(localStorage.getItem('KakaBennyMarketplace')) || [];
+                marketplaceGrid.innerHTML = posts.map(post => `
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="${post.image}" alt="${post.title}" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">${post.title}</h3>
+                            <p class="text-gray-600 text-sm mb-3 h-16 overflow-hidden">${post.description}</p>
+                            <div class="border-t pt-3">
+                                <p class="text-sm font-semibold text-gray-800">Muuzaji: ${post.seller}</p>
+                                <a href="tel:${post.phone}" class="mt-3 w-full block text-center bg-cyan-500 text-white font-bold py-2 px-4 rounded-full hover:bg-cyan-600 transition duration-300">
+                                    <i class="fas fa-phone mr-2"></i>Mpigie Muuzaji
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            openPostModalBtn.addEventListener('click', () => openModal(postProductModal));
+
+            imageUpload.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.classList.add('hidden');
+                    imagePreview.src = "";
+                }
+            });
+
+            postProductForm.addEventListener('submit', async function(e) { // Added async here
+                e.preventDefault();
+
+                const file = imageUpload.files[0];
+                if (!file) {
+                    showToast('Tafadhali weka picha ya bidhaa.', true);
+                    return;
+                }
+
+                showToast('Tunapakia picha, subiri kidogo...', false); // User feedback
+
+                const imageUrl = await uploadImageToCloudinary(file); // Call the upload function
+                if (!imageUrl) {
+                    return; // Stop if upload failed
+                }
+
+                const newPost = {
+                    seller: document.getElementById('seller-name').value,
+                    phone: document.getElementById('seller-phone').value,
+                    title: document.getElementById('product-title').value,
+                    description: document.getElementById('product-description').value,
+                    image: imageUrl // Tumia URL ya Cloudinary hapa
+                };
+
+                const posts = JSON.parse(localStorage.getItem('KakaBennyMarketplace')) || [];
+                posts.unshift(newPost);
+                localStorage.setItem('KakaBennyMarketplace', JSON.stringify(posts));
+
+                renderMarketplacePosts();
+                closeModal(postProductModal);
+                postProductForm.reset();
+                imagePreview.classList.add('hidden');
+                imagePreview.src = ""; // Clear preview
+                showToast('Tangazo lako limewekwa sokoni!');
+            });
+
+
+            // --- USIMAMIZI WA MODAL NA SEHEMU NYINGINE ---
+            document.querySelectorAll('.close-modal-btn').forEach(btn => btn.addEventListener('click', () => {
+                const modal = btn.closest('.modal');
+                closeModal(modal);
+                if (modal.id === 'confirmation-modal') {
+                    cart = [];
+                    updateCartUI();
+                    checkoutForm.reset();
+                }
+                // Clear marketplace form and image preview on close
+                if (modal.id === 'post-product-modal') {
+                    postProductForm.reset();
+                    imagePreview.classList.add('hidden');
+                    imagePreview.src = "";
+                }
+            }));
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            cartButton.addEventListener('click', () => openModal(document.getElementById('cart-modal')));
+            // Initialize page
+            showPage('main-content');
+            updateCartUI();
+            renderTestimonials();
+            renderMarketplacePosts();
+        });
+    </script>
+</body>
+</html>
